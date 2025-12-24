@@ -5,6 +5,7 @@ build:
   python_packages:
     - torch==2.1.0
     - torchvision==0.16.0
+    - huggingface_hub==0.20.3
     - diffusers==0.25.0
     - transformers==4.36.0
     - accelerate==0.25.0
