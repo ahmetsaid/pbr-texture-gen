@@ -4,7 +4,11 @@
       "Bash(cog --version:*)",
       "Bash(cog login:*)",
       "Bash(python -m cog:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "WebFetch(domain:replicate.com)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

@@ -173,9 +173,8 @@ class Predictor(BasePredictor):
             "black-forest-labs/FLUX.1-schnell",
             torch_dtype=torch.bfloat16
         )
-        self.pipe.to("cuda")
 
-        # Enable memory optimizations
+        # Use CPU offload for memory efficiency on L40S
         self.pipe.enable_model_cpu_offload()
 
         print("Model loaded successfully!")
