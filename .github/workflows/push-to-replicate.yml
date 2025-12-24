@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Free disk space
         run: |
+          # Remove large pre-installed packages
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf /usr/local/lib/android
           sudo rm -rf /opt/ghc
@@ -20,9 +21,31 @@ jobs:
           sudo rm -rf /usr/share/swift
           sudo rm -rf /usr/local/.ghcup
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+          # Remove more large directories
+          sudo rm -rf /usr/share/miniconda
+          sudo rm -rf /usr/local/share/chromium
+          sudo rm -rf /usr/local/share/powershell
+          sudo rm -rf /usr/share/az_*
+          sudo rm -rf /opt/microsoft
+          sudo rm -rf /opt/pipx
+          sudo rm -rf /opt/google
+          sudo rm -rf /usr/lib/google-cloud-sdk
+          sudo rm -rf /usr/lib/jvm
+          sudo rm -rf /usr/lib/mono
+          sudo rm -rf /usr/lib/heroku
+          sudo rm -rf /usr/local/julia*
+
+          # Remove apt packages to free more space
+          sudo apt-get remove -y '^aspnetcore-.*' '^dotnet-.*' 'php.*' '^mongodb-.*' '^mysql-.*' azure-cli google-chrome-stable firefox powershell mono-devel libgl1-mesa-dri google-cloud-sdk --fix-missing || true
+          sudo apt-get autoremove -y || true
           sudo apt-get clean
+
+          # Docker cleanup
           sudo docker system prune -af
-          df -h
+
+          echo "Available disk space:"
+          df -h /
 
       - name: Checkout
         uses: actions/checkout@v4
