@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cog --version:*)",
+      "Bash(cog login:*)",
+      "Bash(python -m cog:*)",
+      "Bash(git init:*)"
+    ]
+  }
+}
