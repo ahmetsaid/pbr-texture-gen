@@ -1,0 +1,21 @@
+name: Push to Replicate
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest-8-cores
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Push to Replicate
+        uses: replicate/cog-push-action@v1
+        with:
+          image: r8.im/ahmetsaid/pbr-texture-gen
+        env:
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
